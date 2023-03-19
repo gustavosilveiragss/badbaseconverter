@@ -26,13 +26,12 @@ use clap::Parser;
 
 #[derive(Parser)]
 struct Cli {
-    bin: String,
+    pattern: String,
+    num: String,
 }
 
-fn get_binary() -> String {
-    let args = Cli::parse();
-
-    let bin = &args.bin.trim().to_string();
+fn binary_to_decimal() -> String {
+    let bin = &args.num.trim().to_string();
 
     // check if input consists only of 1 and 0
     if !bin.chars().all(|x| "01".contains(x)) {
@@ -45,6 +44,12 @@ fn get_binary() -> String {
 
 use anyhow::Result;
 fn main() -> Result<()> {
+    let args = Cli::parse();
+
+    match &args.pattern {
+        "bitodec" | "btc" | "bintodec" | "binarytodecimal" => binary_to_decimal();  
+    }
+
     let bin = get_binary();
 
     bintodec::bi_to_dec(bin);
