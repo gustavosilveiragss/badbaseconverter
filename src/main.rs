@@ -1,4 +1,6 @@
 mod bintodec;
+mod dectobin;
+mod utils;
 
 use clap::Parser;
 
@@ -20,8 +22,10 @@ fn binary_to_decimal(args: Cli) {
     bintodec::bi_to_dec(bin.clone());
 }
 
-fn decimal_to_binary(_args: Cli) {
-    
+fn decimal_to_binary(args: Cli) {
+    let dec = &args.num.trim().to_string();
+
+    dectobin::dec_to_bi(dec.clone());
 }
 
 use anyhow::Result;
