@@ -17,9 +17,7 @@ pub fn dec_to_hex(dec: String) {
             13 => 'D',
             14 => 'E',
             15 => 'F',
-            _ => {
-                panic!("SOMETHING WENT WRONG IN DIVIDING")
-            }
+            _ => panic!("SOMETHING WENT WRONG IN DIVIDING")
         };
 
         hex.push(new_char);

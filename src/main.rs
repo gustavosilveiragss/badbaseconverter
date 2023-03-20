@@ -1,7 +1,8 @@
 mod bintodec;
 mod dectobin;
-mod utils;
 mod dectohex;
+mod hextodec;
+mod utils;
 
 use clap::Parser;
 
@@ -11,41 +12,26 @@ struct Cli {
     num: String,
 }
 
-fn binary_to_decimal(args: Cli) {
-    let bin = &args.num.trim().to_string();
-
-    // check if input consists only of 1 and 0
-    if !bin.chars().all(|x| "01".contains(x)) {
-        println!("INVALID CHARACTERS. TRY AGAIN:");
-        binary_to_decimal(args);
-    }
-
-    bintodec::bi_to_dec(bin.clone());
-}
-
-fn decimal_to_binary(args: Cli) {
-    let dec = &args.num.trim().to_string();
-
-    dectobin::dec_to_bi(dec.clone());
-}
-
-fn decimal_to_hexadecimal(args: Cli) {
-    let dec = &args.num.trim().to_string();
-
-    dectohex::dec_to_hex(dec.clone());
-}
-
 use anyhow::Result;
 fn main() -> Result<()> {
     let args = Cli::parse();
 
+    let num = &args.num.trim().to_string();
+
     match args.pattern.as_str() {
-        "bitodec" | "btd" | "bintodec" | "binarytodecimal" => binary_to_decimal(args),
-        "dectobi" | "dtb" | "dectobin" | "decimaltobinary" => decimal_to_binary(args),
-        "dectohex" | "dth" | "dechex" | "decimaltohexadecimal" => decimal_to_hexadecimal(args),
-        &_ => println!("MUST INPUT CONVERSION PATTERN MATCHING OPTIONS")
+        "bitodec" | "btd" | "bintodec" | "binarytodecimal" => {
+            // check if input consists only of 1 and 0
+            if !num.chars().all(|x| "01".contains(x)) {
+                panic!("INVALID CHARACTERS. TRY AGAIN");
+            }
+
+            bintodec::bi_to_dec(num.clone())
+        }
+        "dectobi" | "dtb" | "dectobin" | "decimaltobinary" => dectobin::dec_to_bi(num.clone()),
+        "dectohex" | "dth" | "dechex" | "decimaltohexadecimal" => dectohex::dec_to_hex(num.clone()),
+        "hextodec" | "htd" | "hexdec" | "hexadecimaltodecimal" => hextodec::hex_to_dec(num.clone()),
+        &_ => println!("MUST INPUT CONVERSION PATTERN MATCHING OPTIONS"),
     }
 
     Ok(())
 }
-
