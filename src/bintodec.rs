@@ -1,11 +1,13 @@
 pub fn bi_to_dec(bin: String) {
+    let bytes = bin.as_bytes();
+
     let mut sum: usize = 0;
 
-    for (char, i) in bin.chars().zip(0u32..) {
-        let inverted_pos: u32 = (bin.chars().count() - (i as usize + 1)) as u32;
+    for (i, &char) in bytes.iter().enumerate() {
+        let inverted_pos = bin.chars().count() - (i + 1);
 
-        if char == '1' {
-            sum += 2usize.pow(inverted_pos);
+        if char == b'1' {
+            sum += 2usize.pow(inverted_pos as u32);
         }
     }
 
