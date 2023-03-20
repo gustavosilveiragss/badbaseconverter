@@ -1,6 +1,7 @@
 mod bintodec;
 mod dectobin;
 mod utils;
+mod dectohex;
 
 use clap::Parser;
 
@@ -28,6 +29,12 @@ fn decimal_to_binary(args: Cli) {
     dectobin::dec_to_bi(dec.clone());
 }
 
+fn decimal_to_hexadecimal(args: Cli) {
+    let dec = &args.num.trim().to_string();
+
+    dectohex::dec_to_hex(dec.clone());
+}
+
 use anyhow::Result;
 fn main() -> Result<()> {
     let args = Cli::parse();
@@ -35,6 +42,7 @@ fn main() -> Result<()> {
     match args.pattern.as_str() {
         "bitodec" | "btd" | "bintodec" | "binarytodecimal" => binary_to_decimal(args),
         "dectobi" | "dtb" | "dectobin" | "decimaltobinary" => decimal_to_binary(args),
+        "dectohex" | "dth" | "dechex" | "decimaltohexadecimal" => decimal_to_hexadecimal(args),
         &_ => println!("MUST INPUT CONVERSION PATTERN MATCHING OPTIONS")
     }
 
