@@ -25,12 +25,34 @@ fn main() -> Result<()> {
                 panic!("INVALID CHARACTERS. TRY AGAIN");
             }
 
-            bintodec::bi_to_dec(num.clone())
+            bintodec::bi_to_dec(num.clone());
+            ()
         }
-        "dectobi" | "dtb" | "dectobin" | "decimaltobinary" => dectobin::dec_to_bi(num.clone()),
-        "dectohex" | "dth" | "dechex" | "decimaltohexadecimal" => dectohex::dec_to_hex(num.clone()),
-        "hextodec" | "htd" | "hexdec" | "hexadecimaltodecimal" => hextodec::hex_to_dec(num.clone()),
-        &_ => println!("MUST INPUT CONVERSION PATTERN MATCHING OPTIONS"),
+        "dectobi" | "dtb" | "dectobin" | "decimaltobinary" => {
+            dectobin::dec_to_bi(num.clone());
+            ()
+        }
+        "dectohex" | "dth" | "dechex" | "decimaltohexadecimal" => {
+            dectohex::dec_to_hex(num.clone());
+            ()
+        }
+        "hextodec" | "htd" | "hexdec" | "hexadecimaltodecimal" => {
+            hextodec::hex_to_dec(num.clone());
+            ()
+        }
+        "bintohex" | "bth" | "binhex" | "binarytohexadecimal" => {
+            let dec = bintodec::bi_to_dec(num.clone());
+
+            dectohex::dec_to_hex(dec);
+            ()
+        }
+        "hextobin" | "htb" | "hexbin" | "hexadecimaltobinary" => {
+            let dec = hextodec::hex_to_dec(num.clone());
+
+            dectobin::dec_to_bi(dec);
+            ()
+        }
+        &_ => panic!("MUST INPUT CONVERSION PATTERN MATCHING OPTIONS"),
     }
 
     Ok(())

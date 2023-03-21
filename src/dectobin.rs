@@ -1,6 +1,6 @@
-use crate::utils::reverse_new;
+use crate::utils;
 
-pub fn dec_to_bi(dec: String) {
+pub fn dec_to_bi(dec: String) -> String {
     let mut bin = String::from("");
 
     let mut result: f64 = dec.parse().expect("DECIMAL INPUTTED IS NOT A NUMBER");
@@ -17,5 +17,9 @@ pub fn dec_to_bi(dec: String) {
         result = result.trunc();
     }
 
-    println!("{}", reverse_new(bin));
+    bin = utils::reverse_new(bin);
+
+    println!("the decimal \"{dec}\" in binary is: {bin}");
+
+    bin
 }

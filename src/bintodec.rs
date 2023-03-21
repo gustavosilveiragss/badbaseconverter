@@ -1,4 +1,4 @@
-pub fn bi_to_dec(bin: String) {
+pub fn bi_to_dec(bin: String) -> String {
     let bytes = bin.as_bytes();
 
     let mut sum: usize = 0;
@@ -11,5 +11,7 @@ pub fn bi_to_dec(bin: String) {
         }
     }
 
-    println!("{sum}");
+    println!("the binary \"{bin}\" in decimal is: {sum}");
+
+    sum.to_string()
 }

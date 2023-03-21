@@ -1,6 +1,6 @@
-use crate::utils::reverse_new;
+use crate::utils;
 
-pub fn dec_to_hex(dec: String) {
+pub fn dec_to_hex(dec: String) -> String {
     let mut hex = String::from("");
 
     let mut result: f64 = dec.parse().expect("DECIMAL INPUTTED IS NOT A NUMBER");
@@ -25,5 +25,9 @@ pub fn dec_to_hex(dec: String) {
         result = (result / 16.0).trunc();
     }
 
-    println!("{}", reverse_new(hex));
+    hex = utils::reverse_new(hex);
+
+    println!("the decimal \"{dec}\" in hexadecimal is: {hex}");
+
+    hex
 }

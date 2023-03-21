@@ -1,4 +1,4 @@
-pub fn hex_to_dec(hex: String) {
+pub fn hex_to_dec(hex: String) -> String {
     let bytes = hex.as_bytes();
 
     let mut sum: usize = 0;
@@ -19,5 +19,7 @@ pub fn hex_to_dec(hex: String) {
         sum += char_val * 16usize.pow(inverted_pos as u32);
     }
 
-    println!("{sum}");
+    println!("the hexadecimal \"{hex}\" in decimal is: {sum}");
+
+    sum.to_string()
 }
