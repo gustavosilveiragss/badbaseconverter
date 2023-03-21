@@ -1,10 +1,10 @@
 [package]
-name = "bbin"
+name = "bc"
 version = "0.1.0"
 edition = "2021"
 authors = ["Gustavo Silveira gustavo24gss@gmail.com"]
 license = "MIT"
-description = "Bad Binary: A very very bad binary tool"
+description = "Bad Base Converter: a very bad base converter"
 readme = "README.md"
 repository = "https://github.com/gustavosilveiragss/badbinary"
 
